@@ -35,7 +35,7 @@ namespace post.Pages.Posts
                 return Page();
             }
 
-            _context.Category.Add(Category);
+            _context.Post.Add(Post);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
