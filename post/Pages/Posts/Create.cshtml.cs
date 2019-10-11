@@ -35,19 +35,10 @@ namespace post.Pages.Posts
                 return Page();
             }
 
-            var emptyPost = new Post();
+            _context.Category.Add(Category);
+            await _context.SaveChangesAsync();
 
-            if (await TryUpdateModelAsync<Post>(
-                 emptyPost,
-                 "post",
-                 p => p.PostID, p => p.UserID, p => p.CategoryID, p => p.PostContent))
-            {
-                _context.Post.Add(emptyPost);
-                await _context.SaveChangesAsync();
-                return RedirectToPage("./Index");
-            }
-
-            return Page();
+            return RedirectToPage("./Index");
         }
     }
 }
